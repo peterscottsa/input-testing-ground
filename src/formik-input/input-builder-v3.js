@@ -16,8 +16,6 @@ const BaseInputBuilder = ({ children, className, ...props }) => {
   )
 }
 
-export const InputBuilder = styled(BaseInputBuilder)``
-
 const BaseInput = ({ className }) => {
   const transmittedProps = useContext(InputContext)
   const [field] = useField(transmittedProps.name)

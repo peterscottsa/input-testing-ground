@@ -5,8 +5,7 @@ const InputContext = React.createContext()
 
 const BaseInputBuilder = ({ children, className, ...props }) => {
   const id = useId(props.id)
-  console.log('Render in builder')
-
+  
   return (
     <InputContext.Provider value={{ ...props, id }}>
       <div className={className}>{children}</div>
@@ -14,13 +13,11 @@ const BaseInputBuilder = ({ children, className, ...props }) => {
   )
 }
 
-export const InputBuilder = styled(BaseInputBuilder)``
-
-const BaseInput = ({ className }) => {
+const BaseInput = React.forwardRef(({ className }, ref) => {
   const transmittedProps = useContext(InputContext)
-
-  return <input className={className} {...transmittedProps} />
-}
+  
+  return <input className={className} {...transmittedProps} ref={ref} />
+})
 
 export const Input = styled(BaseInput)`
   appearance: none;
@@ -111,12 +108,12 @@ const BorderedInputBlock = styled.div`
   border: 1px solid lightgray;
 `
 
-export const BorderedInputV3 = (props) => (
+export const BorderedInputV3 = React.forwardRef((props, ref) => (
   <BaseInputBuilder {...props}>
     <Label />
     <BorderedInputBlock>
-      <Input />
+      <Input ref={ref} />
     </BorderedInputBlock>
     <Error />
   </BaseInputBuilder>
-)
+))
