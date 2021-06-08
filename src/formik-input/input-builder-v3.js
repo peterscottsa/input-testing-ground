@@ -7,7 +7,6 @@ const InputContext = React.createContext()
 
 const BaseInputBuilder = ({ children, className, ...props }) => {
   const id = useId(props.id)
-  console.log('Render')
 
   return (
     <InputContext.Provider value={{ ...props, id }}>
