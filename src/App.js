@@ -1,7 +1,7 @@
 import './styles.css'
-import { FormikForm } from './formik-input/form'
-import { NativeForm } from './input/form'
-import { HookForm } from './hook-form'
+import { FormikForm } from './formik-input/formik-form'
+import { NativeForm } from './input/native-form'
+import { HookForm } from './hook-form/hook-form'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 

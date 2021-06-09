@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormikBorderedInputV3 } from './input-builder-v3'
+import { FormikBorderedInputV3 } from './bordered-input'
 import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 
@@ -26,7 +26,7 @@ export function FormikForm() {
       initialValues={initialValues}
       onSubmit={(values) => console.log(values)}
     >
-      {() => (
+      {({ values }) => (
         <StyledForm>
           {fruits.map((fruit) => (
             <FormikBorderedInputV3
@@ -36,6 +36,8 @@ export function FormikForm() {
               placeholder="Write some stuff"
             />
           ))}
+
+          <div>{JSON.stringify(values)}</div>
 
           <button type="submit">Submit</button>
         </StyledForm>

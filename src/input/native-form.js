@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { BorderedInputV3 } from './input-builder-v3'
+import { BorderedInputV3 } from './native-bordered-input'
 
 import {
   initialValues,
   initialErrors,
-  initialTouched,
   fruits
 } from '../helpers'
 import styled from 'styled-components'
@@ -17,7 +16,7 @@ const StyledForm = styled.form`
 export function NativeForm() {
   const [values, setValue] = useState(initialValues)
   const [errors, setErrors] = useState(initialErrors)
-  const [touched, setTouched] = useState(initialTouched)
+  
 
   return (
     <StyledForm
@@ -38,10 +37,6 @@ export function NativeForm() {
           placeholder="Write some stuff"
           value={values[fruit]}
           error={errors[fruit]}
-          // touched={touched[fruit]}
-          onFocus={() =>
-            setTouched((prevState) => ({ ...prevState, [fruit]: true }))
-          }
           onChange={(e) => {
             setErrors((prevState) => ({
               ...prevState,

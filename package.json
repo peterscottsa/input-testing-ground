@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@hookform/resolvers": "^2.5.2",
     "@reach/auto-id": "0.15.0",
     "formik": "2.2.8",
     "lodash.isequal": "4.5.0",

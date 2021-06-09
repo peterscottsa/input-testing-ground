@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { useId } from '@reach/auto-id'
-const InputContext = React.createContext()
+import { useInput, InputContext } from '../../hooks/useInput'
 
-const BaseInputBuilder = ({ children, className, ...props }) => {
+
+export const BaseInputBuilder = ({ children, className, ...props }) => {
   const id = useId(props.id)
-  
+
   return (
     <InputContext.Provider value={{ ...props, id }}>
       <div className={className}>{children}</div>
@@ -15,7 +16,7 @@ const BaseInputBuilder = ({ children, className, ...props }) => {
 
 const BaseInput = React.forwardRef(({ className }, ref) => {
   const transmittedProps = useContext(InputContext)
-  
+
   return <input className={className} {...transmittedProps} ref={ref} />
 })
 
@@ -34,7 +35,7 @@ export const Input = styled(BaseInput)`
  */
 
 const BaseInputContent = ({ render, className, children, ...props }) => {
-  const transmittedProps = useContext(InputContext)
+  const { transmittedProps } = useInput()
 
   if (render) {
     return render(transmittedProps)
@@ -55,14 +56,14 @@ export const Content = styled(BaseInputContent)``
  * Provides a render prop to allow user to easily use field values
  */
 const BaseError = ({ render, className }) => {
-  const transmittedProps = useContext(InputContext)
+  const { transmittedProps } = useInput()
 
   const childrenOrRender = render ? (
     render(transmittedProps)
   ) : (
     <>
-      {transmittedProps.error && transmittedProps.touched && (
-        <div>{transmittedProps.error}</div>
+      {transmittedProps?.error && transmittedProps?.touched && (
+        <div>{transmittedProps?.error}</div>
       )}
     </>
   )
@@ -80,16 +81,16 @@ export const Error = styled(BaseError)`
  * Renders a label.
  * Provides a render prop to allow user to easily use field values
  */
-const BaseLabel = ({ render, className, children, id, ...props }) => {
-  const transmittedProps = useContext(InputContext)
-
+const BaseLabel = ({ render, className, children, ...props }) => {
+  const { transmittedProps, id } = useInput()
+  
   if (render) {
     return render(transmittedProps)
   }
 
   return (
-    <label htmlFor={transmittedProps.id} className={className} {...props}>
-      {children || transmittedProps.label}
+    <label htmlFor={id} className={className} {...props}>
+      {children || transmittedProps?.label || ''}
     </label>
   )
 }
@@ -98,22 +99,4 @@ export const Label = styled(BaseLabel)`
   width: 100%;
 `
 
-/**
- * Example: Creating a custom bordered component
- */
 
-const BorderedInputBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  border: 1px solid lightgray;
-`
-
-export const BorderedInputV3 = React.forwardRef((props, ref) => (
-  <BaseInputBuilder {...props}>
-    <Label />
-    <BorderedInputBlock>
-      <Input ref={ref} />
-    </BorderedInputBlock>
-    <Error />
-  </BaseInputBuilder>
-))

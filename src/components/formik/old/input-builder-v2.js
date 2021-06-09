@@ -70,3 +70,14 @@ export const FormikBorderedInput = (props) => (
     <Error />
   </InputBlock>
 )
+
+export const FormikBorderedInput = (props) => (
+  <InputBlock {...props}>
+    <Label>{props.label}</Label>
+    <StyledInputBlock>
+      <Content>I am a prefix!</Content>
+      <BaseInput />
+    </StyledInputBlock>
+    <Error />
+  </InputBlock>
+)

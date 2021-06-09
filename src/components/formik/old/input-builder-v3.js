@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 import { useField, ErrorMessage } from 'formik'
 import styled from 'styled-components'
 import { useId } from '@reach/auto-id'
-
-const InputContext = React.createContext()
+import { useFormikInput, InputContext } from '../hooks/useInput'
 
 const BaseInputBuilder = ({ children, className, ...props }) => {
   const id = useId(props.id)
@@ -16,10 +15,11 @@ const BaseInputBuilder = ({ children, className, ...props }) => {
 }
 
 const BaseInput = ({ className }) => {
-  const transmittedProps = useContext(InputContext)
-  const [field] = useField(transmittedProps.name)
+  const { transmittedProps, formikProps } = useFormikInput()
 
-  return <input className={className} {...field} {...transmittedProps} />
+  return (
+    <input className={className} {...formikProps.field} {...transmittedProps} />
+  )
 }
 
 export const Input = styled(BaseInput)`
@@ -37,11 +37,10 @@ export const Input = styled(BaseInput)`
  */
 
 const BaseInputContent = ({ render, className, children, ...props }) => {
-  const transmittedProps = useContext(InputContext)
-  const [field, meta] = useField(transmittedProps.name)
+  const { transmittedProps, formikProps } = useFormikInput()
 
   if (render) {
-    return render(field, meta, transmittedProps)
+    return render(formikProps.field, formikProps.meta, transmittedProps)
   }
 
   return (
@@ -59,11 +58,10 @@ export const Content = styled(BaseInputContent)``
  * Provides a render prop to allow user to easily use field values
  */
 const BaseError = ({ render, className, ...props }) => {
-  const transmittedProps = useContext(InputContext)
-  const [field, meta] = useField(transmittedProps.name)
+  const { transmittedProps, formikProps } = useFormikInput()
 
   if (render) {
-    return render(field, meta)
+    return render(formikProps.field, formikProps.meta)
   }
 
   return (
@@ -84,15 +82,14 @@ export const Error = styled(BaseError)`
  * Provides a render prop to allow user to easily use field values
  */
 const BaseLabel = ({ render, className, children, ...props }) => {
-  const transmittedProps = useContext(InputContext)
-  const [field, meta] = useField(transmittedProps.name)
+  const { transmittedProps, formikProps, id } = useFormikInput()
 
   if (render) {
-    return render(field, meta)
+    return render(formikProps.field, formikProps.meta)
   }
 
   return (
-    <label htmlFor={transmittedProps.id} className={className} {...props}>
+    <label htmlFor={id} className={className} {...props}>
       {children || transmittedProps.label}
     </label>
   )
@@ -117,12 +114,26 @@ const BorderedInputBlock = styled.div`
   }
 `
 
-export const FormikBorderedInputV3 = (props) => (
-  <BaseInputBuilder {...props}>
-    <Label />
-    <BorderedInputBlock>
-      <Input />
-    </BorderedInputBlock>
-    <Error />
-  </BaseInputBuilder>
-)
+export const FormikBorderedInputV3 = (props) => {
+  return (
+    <BaseInputBuilder {...props}>
+      <Label />
+      <BorderedInputBlock>
+        <Input />
+      </BorderedInputBlock>
+      <Error />
+    </BaseInputBuilder>
+  )
+}
+
+export const FormikCurrencyInputV3 = (props) => {
+  return (
+    <BaseInputBuilder {...props}>
+      <Label />
+      <BorderedInputBlock>
+        <Input />
+      </BorderedInputBlock>
+      <Error />
+    </BaseInputBuilder>
+  )
+}

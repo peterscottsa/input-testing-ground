@@ -30,25 +30,3 @@ export function useClonedFormikInputChildren(props, children) {
 
   return clonedChildren
 }
-
-export function useMemoCompare(next, compare) {
-  // Ref for storing previous value
-  const previousRef = useRef()
-  const previous = previousRef.current
-  // Pass previous and next value to compare function
-  // to determine whether to consider them equal.
-
-  // If not equal update previousRef to next value.
-  // We only update if not equal so that this hook continues to return
-  // the same old value if compare keeps returning true.
-
-  useEffect(() => {
-    if (!isEqual(previous, next)) {
-      previousRef.current = next
-    }
-  })
-
-  console.log(isEqual(previous, next))
-  // Finally, if equal then return the previous value
-  return isEqual(previous, next) ? previous : next
-}
