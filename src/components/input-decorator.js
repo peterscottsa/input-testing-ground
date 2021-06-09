@@ -2,11 +2,19 @@ import React from 'react'
 import { useFormikInput } from '../hooks/useInput'
 import { ErrorMessage } from 'formik'
 
-export const withFormikInput = (BaseComponent) => () => {
-  const { transmittedProps, formikProps, id } = useFormikInput()
-
-  return <BaseComponent id={id} {...formikProps.field} {...transmittedProps} />
-}
+export const withFormikInput = (BaseComponent) =>
+  React.forwardRef((props, ref) => {
+    const { transmittedProps, formikProps, id } = useFormikInput()
+    console.log(id)
+    return (
+      <BaseComponent
+        ref={ref}
+        id={id}
+        {...formikProps.field}
+        {...transmittedProps}
+      />
+    )
+  })
 
 export const withFormikLabel = (BaseComponent) =>
   React.forwardRef(({ className, render, children, ...props }, ref) => {

@@ -7,7 +7,7 @@ export const InputContext = React.createContext(null)
 export const useFormikInput = () => {
   const transmittedProps = useContext(InputContext)
   const [field, meta, helpers] = useField(transmittedProps.name)
-  const id = useId(transmittedProps.id || transmittedProps.name)
+  const id = useId(transmittedProps.name)
 
   return {
     formikProps: { field, meta, helpers },

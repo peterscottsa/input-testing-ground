@@ -1,6 +1,6 @@
 import React from 'react'
 import { useId } from '@reach/auto-id'
-import { InputContext, useFormikInput } from '../../hooks/useInput'
+import { InputContext } from '../../hooks/useInput'
 import {
   Input as BaseInput,
   Error as BaseError,
@@ -14,10 +14,8 @@ import {
 } from '../input-decorator'
 
 export const BaseInputBuilder = ({ children, className, ...props }) => {
-  const id = useId(props.id)
-
   return (
-    <InputContext.Provider value={{ ...props, id }}>
+    <InputContext.Provider value={props}>
       <div className={className}>{children}</div>
     </InputContext.Provider>
   )
