@@ -1,11 +1,11 @@
 import React from 'react'
-import { useId } from '@reach/auto-id'
 import { InputContext } from '../../hooks/useInput'
 import {
   Input as BaseInput,
   Error as BaseError,
   Label as BaseLabel,
-  BorderedInputBlock
+  BorderedInputBlock,
+  UnderlinedInputBlock
 } from '../base-components'
 import {
   withFormikError,
@@ -13,13 +13,11 @@ import {
   withFormikInput
 } from '../input-decorator'
 
-export const BaseInputBuilder = ({ children, className, ...props }) => {
-  return (
-    <InputContext.Provider value={props}>
-      <div className={className}>{children}</div>
-    </InputContext.Provider>
-  )
-}
+export const BaseInputBuilder = ({ children, className, ...props }) => (
+  <InputContext.Provider value={props}>
+    <div className={className}>{children}</div>
+  </InputContext.Provider>
+)
 
 export const Input = withFormikInput(BaseInput)
 export const Error = withFormikError(BaseError)
@@ -35,12 +33,12 @@ export const FormikBorderedInput = (props) => (
   </BaseInputBuilder>
 )
 
-export const FormikBorderedInput = (props) => (
+export const FormikUnderlinedInput = (props) => (
   <BaseInputBuilder {...props}>
     <Label />
-    <BorderedInputBlock>
+    <UnderlinedInputBlock>
       <Input />
-    </BorderedInputBlock>
+    </UnderlinedInputBlock>
     <Error />
   </BaseInputBuilder>
 )
