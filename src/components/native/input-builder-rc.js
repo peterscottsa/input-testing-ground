@@ -57,18 +57,16 @@ export const Content = styled(BaseInputContent)``
  */
 const BaseError = ({ render, className }) => {
   const { transmittedProps } = useInput()
-
-  const childrenOrRender = render ? (
-    render(transmittedProps)
-  ) : (
-    <>
-      {transmittedProps?.error && transmittedProps?.touched && (
-        <div>{transmittedProps?.error}</div>
-      )}
-    </>
+  
+  if (render) {
+    return render(transmittedProps)
+  }
+  
+  return (
+    <div className={className} >
+      {transmittedProps?.error}
+    </div>
   )
-
-  return <div className={className}>{childrenOrRender}</div>
 }
 
 export const Error = styled(BaseError)`

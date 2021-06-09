@@ -64,7 +64,7 @@ export function HookForm() {
           <BorderedInput
             label={`Label for apple`}
             value={value}
-            error={error?.message}
+            error={error}
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}

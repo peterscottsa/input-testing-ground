@@ -14,6 +14,6 @@ export const BorderedInput = React.forwardRef((props, ref) => (
     <BorderedInputBlock>
       <Input ref={ref} />
     </BorderedInputBlock>
-    <Error render={({error}) => <div>{error}</div>} />
+    <Error render={({error}) => error?.message && <div>{error?.message}</div>} />
   </BaseInputBuilder>
 ))
