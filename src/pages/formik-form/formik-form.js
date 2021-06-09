@@ -1,6 +1,9 @@
 import React from 'react'
 //import { FormikBorderedInput } from './bordered-input'
-import { FormikBorderedInput } from '../../components/formik/input-builder-HOC'
+import {
+  FormikBorderedInput,
+  FormikUnderlinedInput
+} from '../../components/formik/input-builder-HOC'
 import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 
@@ -29,14 +32,23 @@ export function FormikForm() {
     >
       {({ values }) => (
         <StyledForm>
-          {fruits.map((fruit) => (
-            <FormikBorderedInput
-              key={fruit}
-              label={`Label for ${fruit}`}
-              name={fruit}
-              placeholder="Write some stuff"
-            />
-          ))}
+          {fruits.map((fruit, index) =>
+            index % 2 === 0 ? (
+              <FormikBorderedInput
+                key={fruit}
+                label={`Label for ${fruit}`}
+                name={fruit}
+                placeholder="Write some stuff"
+              />
+            ) : (
+              <FormikUnderlinedInput
+                key={fruit}
+                label={`Label for ${fruit}`}
+                name={fruit}
+                placeholder="Write some stuff"
+              />
+            )
+          )}
 
           <div>{JSON.stringify(values)}</div>
 
