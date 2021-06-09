@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
-import { BaseInputBuilder, Error, Input, Label } from '../components/native/input-builder-rc'
+import { BaseInputBuilder, Error, Input, Label } from '../../components/native/input-builder-rc'
 
 const BorderedInputBlock = styled.div`
   display: flex;

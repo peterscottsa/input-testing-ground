@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
-import { BaseInputBuilder, Error, Input, Label } from '../components/formik/input-builder-rc'
+import { BaseInputBuilder, Error, Input, Label } from '../../components/formik/input-builder-rc'
 
 const BorderedInputBlock = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const BorderedInputBlock = styled.div`
   }
 `
 
-export const FormikBorderedInputV3 = (props) => {
+export const FormikBorderedInput = (props) => {
   return (
     <BaseInputBuilder {...props}>
       <Label />
@@ -25,7 +25,7 @@ export const FormikBorderedInputV3 = (props) => {
   )
 }
 
-export const FormikCurrencyInputV3 = (props) => {
+export const FormikCurrencyInput = (props) => {
   return (
     <BaseInputBuilder {...props}>
       <Label />

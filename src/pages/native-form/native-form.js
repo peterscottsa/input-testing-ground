@@ -5,7 +5,7 @@ import {
   initialValues,
   initialErrors,
   fruits
-} from '../helpers'
+} from '../../helpers'
 import styled from 'styled-components'
 
 const StyledForm = styled.form`

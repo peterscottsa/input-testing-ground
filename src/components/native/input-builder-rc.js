@@ -14,10 +14,10 @@ export const BaseInputBuilder = ({ children, className, ...props }) => {
   )
 }
 
-const BaseInput = React.forwardRef(({ className }, ref) => {
+const BaseInput = React.forwardRef(({ className, ...props }, ref) => {
   const transmittedProps = useContext(InputContext)
 
-  return <input className={className} {...transmittedProps} ref={ref} />
+  return <input className={className} {...transmittedProps} {...props} ref={ref} />
 })
 
 export const Input = styled(BaseInput)`

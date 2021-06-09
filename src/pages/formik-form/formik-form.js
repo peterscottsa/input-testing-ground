@@ -1,5 +1,6 @@
 import React from 'react'
-import { FormikBorderedInputV3 } from './bordered-input'
+//import { FormikBorderedInput } from './bordered-input'
+import { FormikBorderedInput } from '../../components/formik/input-builder-HOC'
 import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 
@@ -7,7 +8,7 @@ import {
   validationSchema as fruitSchema,
   initialValues,
   fruits
-} from '../helpers'
+} from '../../helpers'
 import styled from 'styled-components'
 
 const StyledForm = styled(Form)`
@@ -29,7 +30,7 @@ export function FormikForm() {
       {({ values }) => (
         <StyledForm>
           {fruits.map((fruit) => (
-            <FormikBorderedInputV3
+            <FormikBorderedInput
               key={fruit}
               label={`Label for ${fruit}`}
               name={fruit}

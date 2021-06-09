@@ -99,8 +99,4 @@ export const Label = styled(BaseLabel)`
   width: 100%;
 `
 
-/**
- * Example: Creating a custom bordered component
- */
-
 

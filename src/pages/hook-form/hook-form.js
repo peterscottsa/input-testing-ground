@@ -1,5 +1,5 @@
 import React from 'react'
-import { BorderedInput } from './hook-bordered-input'
+import { BorderedInput, HookBorderedInput } from './hook-bordered-input'
 
 import styled from 'styled-components'
 import { useForm, Controller } from 'react-hook-form'
@@ -10,7 +10,7 @@ import Highlight from 'react-highlight'
 const schema = yup.object().shape({
   banana: yup.string().required(),
   apple: yup.string().required(),
-  cherry: yup.string().required()
+  cherry: yup.string().required(),
 })
 
 const StyledForm = styled.form`
@@ -23,14 +23,15 @@ export function HookForm() {
     defaultValues: {
       apple: '',
       cherry: '',
-      banana: ''
+      banana: '',
+      kiwi: ''
     },
     resolver: yupResolver(schema)
   })
   
-  //watch((data) => {
-  //  console.log(data)
-  //})
+  watch((data) => {
+    console.log(data)
+  })
   
   const onSubmit = (data) => console.log(data)
   
@@ -105,6 +106,8 @@ export function HookForm() {
           />
         )}
       />
+  
+      <HookBorderedInput name="kiwi" placeholder="Lets talk kiwis" control={control} />
       
       <button type='submit'>Submit</button>
     </StyledForm>
