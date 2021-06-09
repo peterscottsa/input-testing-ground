@@ -59,11 +59,11 @@ const BaseError = ({ render, className }) => {
   const { transmittedProps } = useInput()
   
   if (render) {
-    return render(transmittedProps)
+    return <div className={className}>{ render(transmittedProps) }</div>
   }
   
   return (
-    <div className={className} >
+    <div className={className}>
       {transmittedProps?.error}
     </div>
   )

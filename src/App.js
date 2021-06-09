@@ -1,9 +1,10 @@
 import './styles.css'
-import { FormikForm } from './formik-input/formik-form'
-import { NativeForm } from './input/native-form'
+import { FormikForm } from './formik-form/formik-form'
+import { NativeForm } from './native-form/native-form'
 import { HookForm } from './hook-form/hook-form'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
+import '../node_modules/highlight.js/styles/atelier-dune-light.css'
 
 const Nav = styled.nav`
   margin-bottom: 20px;
