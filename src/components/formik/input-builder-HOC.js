@@ -34,3 +34,13 @@ export const FormikBorderedInput = (props) => (
     <Error />
   </BaseInputBuilder>
 )
+
+export const FormikBorderedInput = (props) => (
+  <BaseInputBuilder {...props}>
+    <Label />
+    <BorderedInputBlock>
+      <Input />
+    </BorderedInputBlock>
+    <Error />
+  </BaseInputBuilder>
+)

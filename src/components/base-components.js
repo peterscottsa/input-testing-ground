@@ -31,3 +31,14 @@ export const BorderedInputBlock = styled.div`
     border: 2px solid blue;
   }
 `
+
+export const UnderlinedInputBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+
+  :focus-within {
+    border-bottom: 2px solid blue;
+  }
+`

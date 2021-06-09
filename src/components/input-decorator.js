@@ -16,8 +16,9 @@ export const withFormikInput = (BaseComponent) =>
     )
   })
 
-export const withFormikLabel = (BaseComponent) =>
-  React.forwardRef(({ className, render, children, ...props }, ref) => {
+export const withFormikLabel =
+  (BaseComponent) =>
+  ({ className, render, children, ...props }) => {
     const { transmittedProps, formikProps, id } = useFormikInput()
 
     if (render) {
@@ -29,10 +30,11 @@ export const withFormikLabel = (BaseComponent) =>
         {children || transmittedProps.label}
       </BaseComponent>
     )
-  })
+  }
 
-export const withFormikError = (BaseComponent) =>
-  React.forwardRef(({ render, ...props }, ref) => {
+export const withFormikError =
+  (BaseComponent) =>
+  ({ render }) => {
     const { transmittedProps, formikProps } = useFormikInput()
 
     if (render) {
@@ -42,4 +44,4 @@ export const withFormikError = (BaseComponent) =>
     return (
       <ErrorMessage name={transmittedProps.name} component={BaseComponent} />
     )
-  })
+  }
