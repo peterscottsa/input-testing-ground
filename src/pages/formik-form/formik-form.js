@@ -25,36 +25,39 @@ export function FormikForm() {
   })
 
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
-    >
-      {({ values }) => (
-        <StyledForm>
-          {fruits.map((fruit, index) =>
-            index % 2 === 0 ? (
-              <FormikBorderedInput
-                key={fruit}
-                label={`Label for ${fruit}`}
-                name={fruit}
-                placeholder="Write some stuff"
-              />
-            ) : (
-              <FormikUnderlinedInput
-                key={fruit}
-                label={`Label for ${fruit}`}
-                name={fruit}
-                placeholder="Write some stuff"
-              />
-            )
-          )}
+    <>
+      <div></div>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={(values) => console.log(values)}
+      >
+        {({ values }) => (
+          <StyledForm>
+            {fruits.map((fruit, index) =>
+              index % 2 === 0 ? (
+                <FormikBorderedInput
+                  key={fruit}
+                  label={`Label for ${fruit}`}
+                  name={fruit}
+                  placeholder="Write some stuff"
+                />
+              ) : (
+                <FormikUnderlinedInput
+                  key={fruit}
+                  label={`Label for ${fruit}`}
+                  name={fruit}
+                  placeholder="Write some stuff"
+                />
+              )
+            )}
 
-          <div>{JSON.stringify(values)}</div>
+            <div>{JSON.stringify(values)}</div>
 
-          <button type="submit">Submit</button>
-        </StyledForm>
-      )}
-    </Formik>
+            <button type="submit">Submit</button>
+          </StyledForm>
+        )}
+      </Formik>
+    </>
   )
 }
