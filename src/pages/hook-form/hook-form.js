@@ -10,7 +10,7 @@ import Highlight from 'react-highlight'
 const schema = yup.object().shape({
   banana: yup.string().required(),
   apple: yup.string().required(),
-  cherry: yup.string().required(),
+  kiwi: yup.string().required()
 })
 
 const StyledForm = styled.form`
@@ -22,22 +22,21 @@ export function HookForm() {
   const { watch, handleSubmit, control } = useForm({
     defaultValues: {
       apple: '',
-      cherry: '',
       banana: '',
       kiwi: ''
     },
     resolver: yupResolver(schema)
   })
-  
+
   watch((data) => {
     console.log(data)
   })
-  
+
   const onSubmit = (data) => console.log(data)
-  
+
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <Highlight className='jsx'>
+      <Highlight className="jsx">
         {`
           export const BorderedInput = React.forwardRef((props, ref) => (
             <BaseInputBuilder {...props}>
@@ -50,13 +49,15 @@ export function HookForm() {
           ))
         `}
       </Highlight>
+
+      <hr />
       <Controller
-        name='banana'
+        name="banana"
         control={control}
         render={({
-                   field: { onChange, onBlur, value, ref },
-                   fieldState: { error }
-                 }) => (
+          field: { onChange, onBlur, value, ref },
+          fieldState: { error }
+        }) => (
           <BorderedInput
             label={`Label for banana`}
             value={value}
@@ -64,18 +65,18 @@ export function HookForm() {
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}
-            placeholder='Send a message about banana'
+            placeholder="Send a message about banana"
           />
         )}
       />
-      
+      <hr />
       <Controller
-        name='apple'
+        name="apple"
         control={control}
         render={({
-                   field: { onChange, onBlur, value, ref },
-                   fieldState: { error }
-                 }) => (
+          field: { onChange, onBlur, value, ref },
+          fieldState: { error }
+        }) => (
           <BorderedInput
             label={`Label for apple`}
             value={value}
@@ -83,33 +84,19 @@ export function HookForm() {
             onChange={onChange}
             onBlur={onBlur}
             ref={ref}
-            placeholder='Send a message about apple'
+            placeholder="Send a message about apple"
           />
         )}
       />
-      
-      <Controller
-        name='cherry'
+      <hr />
+      <HookBorderedInput
+        label="Label for kiwis"
+        name="kiwi"
+        placeholder="Lets talk kiwis"
         control={control}
-        render={({
-                   field: { onChange, onBlur, value, ref },
-                   fieldState: { error }
-                 }) => (
-          <BorderedInput
-            label={`Label for cherry`}
-            value={value}
-            error={error}
-            onChange={onChange}
-            onBlur={onBlur}
-            ref={ref}
-            placeholder='Send a message about cherry'
-          />
-        )}
       />
-  
-      <HookBorderedInput name="kiwi" placeholder="Lets talk kiwis" control={control} />
-      
-      <button type='submit'>Submit</button>
+
+      <button type="submit">Submit</button>
     </StyledForm>
   )
 }

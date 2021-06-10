@@ -55,14 +55,16 @@ export const Content = styled(BaseInputContent)``
  * Can be used to render and style validation errors.
  * Provides a render prop to allow user to easily use field values
  */
-export const Error = ({ render, className }) => {
+export const Error = ({ render }) => {
   const { transmittedProps } = useInput()
 
   if (render) {
     return render(transmittedProps)
   }
 
-  return <BaseError className={className}>{transmittedProps?.error}</BaseError>
+  return transmittedProps?.error ? (
+    <BaseError>{transmittedProps?.error}</BaseError>
+  ) : null
 }
 
 /**
