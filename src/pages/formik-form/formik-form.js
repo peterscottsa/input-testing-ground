@@ -8,6 +8,7 @@ import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 
 import styled from 'styled-components'
+import Highlight from 'react-highlight'
 
 const StyledForm = styled(Form)`
   display: grid;
@@ -24,6 +25,23 @@ export function FormikForm() {
   return (
     <>
       <h1>Formik form</h1>
+      <Highlight className="jsx">
+        {`
+          const Input = withFormikInput(BaseInput)
+          const Error = withFormikError(BaseError)
+          const Label = withFormikLabel(BaseLabel)
+          
+          const FormikBorderedInput = (props) => (
+            <BaseInputBuilder {...props}>
+              <Label />
+              <BorderedInputBlock>
+                <Input />
+              </BorderedInputBlock>
+              <Error />
+            </BaseInputBuilder>
+          )
+        `}
+      </Highlight>
       <Formik
         validationSchema={validationSchema}
         initialValues={{
