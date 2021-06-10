@@ -59,42 +59,18 @@ export function HookForm() {
 
       <hr />
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <Controller
+        <HookBorderedInput
+          label="Label for bananas"
           name="banana"
+          placeholder="Lets talk bananas"
           control={control}
-          render={({
-            field: { onChange, onBlur, value, ref },
-            fieldState: { error }
-          }) => (
-            <BorderedInput
-              label={`Label for banana`}
-              value={value}
-              error={error}
-              onChange={onChange}
-              onBlur={onBlur}
-              ref={ref}
-              placeholder="Send a message about banana"
-            />
-          )}
         />
         <hr />
-        <Controller
+        <HookBorderedInput
+          label="Label for apples"
           name="apple"
+          placeholder="Lets talk apples"
           control={control}
-          render={({
-            field: { onChange, onBlur, value, ref },
-            fieldState: { error }
-          }) => (
-            <BorderedInput
-              label={`Label for apple`}
-              value={value}
-              error={error}
-              onChange={onChange}
-              onBlur={onBlur}
-              ref={ref}
-              placeholder="Send a message about apple"
-            />
-          )}
         />
         <hr />
         <HookBorderedInput
