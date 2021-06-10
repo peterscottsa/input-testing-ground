@@ -1,9 +1,9 @@
 import React from 'react'
 import { InputContext } from '../../hooks/useInput'
 import {
-  Input as BaseInput,
-  Error as BaseError,
-  Label as BaseLabel,
+  BaseInput,
+  BaseError,
+  BaseLabel,
   BorderedInputBlock,
   UnderlinedInputBlock
 } from '../base-components'

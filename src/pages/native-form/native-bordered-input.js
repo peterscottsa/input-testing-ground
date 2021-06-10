@@ -1,19 +1,18 @@
-import styled from 'styled-components'
 import React from 'react'
-import { BaseInputBuilder, Error, Input, Label } from '../../components/native/input-builder-rc'
+import {
+  BaseInputBuilder,
+  Error,
+  Input,
+  Label
+} from '../../components/native/input-builder-rc'
+import { BaseError, BorderedInputBlock } from '../../components/base-components'
 
-const BorderedInputBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  border: 1px solid lightgray;
-`
-
-export const BorderedInputV3 = React.forwardRef((props, ref) => (
+export const BorderedNativeInput = (props) => (
   <BaseInputBuilder {...props}>
     <Label />
     <BorderedInputBlock>
-      <Input ref={ref} />
+      <Input />
     </BorderedInputBlock>
-    <Error render={({error}) => <div>{error}</div>} />
+    <Error render={({ error }) => error && <BaseError>{error}</BaseError>} />
   </BaseInputBuilder>
-))
+)

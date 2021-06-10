@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Input = styled.input`
+export const BaseInput = styled.input`
   appearance: none;
   border: none;
   padding: 8px;
@@ -8,13 +8,13 @@ export const Input = styled.input`
   outline: none;
 `
 
-export const Label = styled.label`
+export const BaseLabel = styled.label`
   color: lightgray;
   font-size: 12px;
   margin-bottom: 10px;
 `
 
-export const Error = styled.div`
+export const BaseError = styled.div`
   color: white;
   font-size: 12px;
   padding: 4px;

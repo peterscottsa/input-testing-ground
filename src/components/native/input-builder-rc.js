@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useId } from '@reach/auto-id'
 import { useInput, InputContext } from '../../hooks/useInput'
 
+import { BaseInput, BaseError, BaseLabel } from '../base-components'
 
 export const BaseInputBuilder = ({ children, className, ...props }) => {
   const id = useId(props.id)
@@ -14,19 +15,18 @@ export const BaseInputBuilder = ({ children, className, ...props }) => {
   )
 }
 
-const BaseInput = React.forwardRef(({ className, ...props }, ref) => {
+export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const transmittedProps = useContext(InputContext)
 
-  return <input className={className} {...transmittedProps} {...props} ref={ref} />
+  return (
+    <BaseInput
+      className={className}
+      {...transmittedProps}
+      {...props}
+      ref={ref}
+    />
+  )
 })
-
-export const Input = styled(BaseInput)`
-  appearance: none;
-  border: none;
-  grid-area: input;
-  padding: 8px;
-  width: 100%;
-`
 
 /**
  * Content
@@ -55,46 +55,31 @@ export const Content = styled(BaseInputContent)``
  * Can be used to render and style validation errors.
  * Provides a render prop to allow user to easily use field values
  */
-const BaseError = ({ render, className }) => {
+export const Error = ({ render, className }) => {
   const { transmittedProps } = useInput()
-  
-  if (render) {
-    return <div className={className}>{ render(transmittedProps) }</div>
-  }
-  
-  return (
-    <div className={className}>
-      {transmittedProps?.error}
-    </div>
-  )
-}
 
-export const Error = styled(BaseError)`
-  width: 100%;
-  background: lightcoral;
-`
+  if (render) {
+    return render(transmittedProps)
+  }
+
+  return <BaseError className={className}>{transmittedProps?.error}</BaseError>
+}
 
 /**
  * Label
  * Renders a label.
  * Provides a render prop to allow user to easily use field values
  */
-const BaseLabel = ({ render, className, children, ...props }) => {
+export const Label = ({ render, className, children, ...props }) => {
   const { transmittedProps, id } = useInput()
-  
+
   if (render) {
     return render(transmittedProps)
   }
 
   return (
-    <label htmlFor={id} className={className} {...props}>
+    <BaseLabel htmlFor={id} className={className} {...props}>
       {children || transmittedProps?.label || ''}
-    </label>
+    </BaseLabel>
   )
 }
-
-export const Label = styled(BaseLabel)`
-  width: 100%;
-`
-
-

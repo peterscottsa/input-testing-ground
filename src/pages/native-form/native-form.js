@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
-import { BorderedInputV3 } from './native-bordered-input'
+import { BorderedNativeInput } from './native-bordered-input'
 
-import {
-  initialValues,
-  initialErrors,
-  fruits
-} from '../../helpers'
+import { initialValues, initialErrors, fruits } from '../../helpers'
 import styled from 'styled-components'
 
 const StyledForm = styled.form`
@@ -16,7 +12,6 @@ const StyledForm = styled.form`
 export function NativeForm() {
   const [values, setValue] = useState(initialValues)
   const [errors, setErrors] = useState(initialErrors)
-  
 
   return (
     <StyledForm
@@ -28,7 +23,7 @@ export function NativeForm() {
       noValidate
     >
       {fruits.map((fruit) => (
-        <BorderedInputV3
+        <BorderedNativeInput
           key={fruit}
           label={`Label for ${fruit}`}
           name={fruit}
