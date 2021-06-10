@@ -1,8 +1,8 @@
 import React from 'react'
-import { BorderedInput, HookBorderedInput } from './hook-bordered-input'
+import { HookBorderedInput } from './hook-bordered-input'
 
 import styled from 'styled-components'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import Highlight from 'react-highlight'
