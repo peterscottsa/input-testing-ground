@@ -40,6 +40,16 @@ export function FormikForm() {
               <Error />
             </BaseInputBuilder>
           )
+          
+          const FormikUnderlinedInput = (props) => (
+            <BaseInputBuilder {...props}>
+              <Label />
+              <UnderlinedInputBlock>
+                <Input />
+              </UnderlinedInputBlock>
+              <Error />
+            </BaseInputBuilder>
+          )
         `}
       </Highlight>
       <Formik
