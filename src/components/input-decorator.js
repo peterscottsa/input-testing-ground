@@ -5,7 +5,7 @@ import { ErrorMessage } from 'formik'
 export const withFormikInput = (BaseComponent) =>
   React.forwardRef((props, ref) => {
     const { transmittedProps, formikProps, id } = useFormikInput()
-    console.log(id)
+
     return (
       <BaseComponent
         ref={ref}
